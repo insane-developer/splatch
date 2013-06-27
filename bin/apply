@@ -9,7 +9,7 @@ var nopt = require('nopt'),
 	});
 
 	if( !opts.target || !opts.patch ){
-		console.log('--target [filename] --patch [filename]');
+		console.log('--target [filename] --patch [filename]\nОпционально:\n\t--out [filename] Файл, в который нужно записать патч');
 		return;
 	}
 	var str = fs.readFileSync(opts.target, 'utf-8'),
