@@ -5,7 +5,9 @@ var nopt = require('nopt'),
 	opts = nopt({
 		"old": path,
 		"new": path,
-		"out": path
+		"out": path,
+		"blocksize": Number,
+		"verify": Boolean
 	});
 
 	if( !opts.old || !opts['new'] ){
@@ -14,9 +16,13 @@ var nopt = require('nopt'),
 	}
 	var strA = fs.readFileSync(opts.old, 'utf-8'),
 		strB = fs.readFileSync(opts['new'], 'utf-8'),
-		patch = require('../lib/create.js')(strA, strB);
+		patch = require('../lib/create.js')(strA, strB, opts.blocksize);
+	if( opts.verify ){
+		var applied = require('../lib/apply.js')(strA, patch);
+		console.log('Патч ' + (applied === strA? 'хороший':'плохой'));
+	}
 	if( opts.out ){
-		fs.writeFileSync(opts.out, patch, 'utf-8');
+		fs.writeFileSync(opts.out, JSON.stringify(patch), 'utf-8');
 	}else{
-		console.log(patch);
+		console.log(JSON.stringify(patch));
 	}
