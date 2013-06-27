@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+var nopt = require('nopt'),
+	path = require('path'),
+	fs = require('fs'),
+	opts = nopt({
+		"target": path,
+		"patch": path,
+		"out": path
+	});
+
+	if( !opts.target || !opts.patch ){
+		console.log('--target [filename] --patch [filename]');
+		return;
+	}
+	var str = fs.readFileSync(opts.target, 'utf-8'),
+		patch = fs.readFileSync(opts.patch, 'utf-8'),
+		out = require('../lib/apply.js')(str, patch);
+	if( opts.out ){
+		fs.writeFileSync(opts.out, out, 'utf-8');
+	}else{
+		console.log(out);
+	}

@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+var nopt = require('nopt'),
+	path = require('path'),
+	fs = require('fs'),
+	opts = nopt({
+		"old": path,
+		"new": path,
+		"out": path
+	});
+
+	if( !opts.old || !opts['new'] ){
+		console.log('--old [filename] --new [filename]');
+		return;
+	}
+	var strA = fs.readFileSync(opts.old, 'utf-8'),
+		strB = fs.readFileSync(opts['new'], 'utf-8'),
+		patch = require('../lib/create.js')(strA, strB);
+	if( opts.out ){
+		fs.writeFileSync(opts.out, patch, 'utf-8');
+	}else{
+		console.log(patch);
+	}

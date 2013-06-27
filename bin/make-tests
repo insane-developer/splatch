@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+var nopt = require('nopt'),
+	path = require('path'),
+	opts = nopt({
+		"size": Array,
+		"vocA": Array,
+		"vocB": Array,
+		"prefix": path
+	}),
+	fs = require('fs');
+
+	if( !opts.size && !opts.vocA && !opts.vocB && !opts.prefix ){
+		console.log('--size [Number] Размеры каждого из тестовых файлов\n' +
+					'--vocA [word] --vocA [...] Слова, из которых будет состоять текст в файле А' +
+					'--vocB [word] --vocB [...] Слова, из которых будет состоять текст в файле B' +
+					'--prefix [filename] Префикс названия файлов, в который будет записаны тестовые строки');
+		return;
+	}
+	if( !opts.size || !opts.size.length || opts.size.length > 2){
+		console.error('Неверное количество параметров --size');
+		return;
+	}
+	if( opts.vocA ){
+		console.log('Словарь A длины ' + opts.vocA.length + ', начало: ' + opts.vocA.join(', ').substr(0, 80) + '...');
+	}else{
+		console.log('Словарь A по умолчанию');
+	}
+	if( opts.vocB ){
+		console.log('Словарь B длины ' + opts.vocB.length + ', начало: ' + opts.vocB.join(', ').substr(0, 80) + '...');
+	}else {
+		console.log('Словарь B как словарь A');
+	}
+	opts.prefix || (opts.prefix = './test' + (new Date()).getTime());
+	
+	var files = require('../lib/testGenerator.js')(opts.size[0], opts.size[1], opts.vocA, opts.vocB);
+	
+	function onWriteComplete(err){
+		if(err) throw err;
+		console.log('Записан');
+	}
+	fs.writeFile(opts.prefix + '_a', files[0], 'utf-8',onWriteComplete);
+	fs.writeFile(opts.prefix + '_b', files[1], 'utf-8',onWriteComplete);
+	console.log('Готово');

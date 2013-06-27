@@ -1,0 +1,11 @@
+{
+	"name":"shiny-nemesis",
+	"version":"0.0.0",
+	"bin":{
+		"create-shiny-patch":"./bin/create",
+		"apply-shiny-patch":"./bin/apply"
+	},
+	"dependencies":{
+		"nopt":"2.1.1"
+	}
+}
