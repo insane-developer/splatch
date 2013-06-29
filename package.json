@@ -1,11 +1,26 @@
 {
 	"name":"shiny-nemesis",
-	"version":"0.0.0",
+	"author":{
+		"name":"Andrey Mokrousov",
+		"url:"https://github.com/insane-developer"
+	},
+	"homepage":"https://github.com/insane-developer/shiny-nemesis",
+	"repository":{
+		"type":"git",
+		"url":"https://github.com/insane-developer/shiny-nemesis",
+	},
+	"description":"Tools for creating and applying patches",
+	"version":"0.0.1",
+	"main":"./main.js",
 	"bin":{
 		"create-shiny-patch":"./bin/create",
 		"apply-shiny-patch":"./bin/apply"
 	},
 	"dependencies":{
 		"nopt":"2.1.1"
-	}
+	},
+	"licenses": [{
+		"type": "MIT",
+		"url": "https://github.com/insane-developer/shiny-nemesis/master/LICENSE"
+	}]
 }

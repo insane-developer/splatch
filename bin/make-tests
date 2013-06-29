@@ -10,25 +10,25 @@ var nopt = require('nopt'),
 	fs = require('fs');
 
 	if( !opts.size && !opts.vocA && !opts.vocB && !opts.prefix ){
-		console.log('--size [Number] Размеры каждого из тестовых файлов\n' +
-					'--vocA [word] --vocA [...] Слова, из которых будет состоять текст в файле А' +
-					'--vocB [word] --vocB [...] Слова, из которых будет состоять текст в файле B' +
-					'--prefix [filename] Префикс названия файлов, в который будет записаны тестовые строки');
+		console.log('--size [Number] Length of each test files\n' +
+					'--vocA [word] --vocA [...] Words used to build file A' +
+					'--vocB [word] --vocB [...] Words used to build file B' +
+					'--prefix [filename] Prefix of test files filenames');
 		return;
 	}
 	if( !opts.size || !opts.size.length || opts.size.length > 2){
-		console.error('Неверное количество параметров --size');
+		console.error('Wrong number of --size arguments');
 		return;
 	}
 	if( opts.vocA ){
-		console.log('Словарь A длины ' + opts.vocA.length + ', начало: ' + opts.vocA.join(', ').substr(0, 80) + '...');
+		console.log('Dictionary A size is ' + opts.vocA.length + ', begin: ' + opts.vocA.join(', ').substr(0, 80) + '...');
 	}else{
-		console.log('Словарь A по умолчанию');
+		console.log('Default dictionary is used as Dictionary A');
 	}
 	if( opts.vocB ){
-		console.log('Словарь B длины ' + opts.vocB.length + ', начало: ' + opts.vocB.join(', ').substr(0, 80) + '...');
+		console.log('Dictionary B size is ' + opts.vocB.length + ', begin: ' + opts.vocB.join(', ').substr(0, 80) + '...');
 	}else {
-		console.log('Словарь B как словарь A');
+		console.log('Dictionary B is as A');
 	}
 	opts.prefix || (opts.prefix = './test' + (new Date()).getTime());
 	
@@ -36,8 +36,8 @@ var nopt = require('nopt'),
 	
 	function onWriteComplete(err){
 		if(err) throw err;
-		console.log('Записан');
+		console.log('File has been written');
 	}
 	fs.writeFile(opts.prefix + '_a', files[0], 'utf-8',onWriteComplete);
 	fs.writeFile(opts.prefix + '_b', files[1], 'utf-8',onWriteComplete);
-	console.log('Готово');
+	console.log('Done');

@@ -12,9 +12,9 @@ var nopt = require('nopt'),
 	});
 
 	if( !opts.old || !opts['new'] ){
-		console.log('--old [filename] --new [filename]\nОпционально:\n\t--out [filename] Файл, в который нужно записать патч\n'+
-					'\t--blocksize [Number] Минимальный размер блока для вставки\n\t--verify Выполнить проверку патча после создания'+
-					'\t--verbose [0,1,2] Не писать ничего, Писать время, Писать всю информацию');
+		console.log('--old [filename] --new [filename]\nOptional:\n\t--out [filename] File in which patch should be written\n'+
+					'\t--blocksize [Number] Minimal size of insertion block\n\t--verify Perform verification after creation'+
+					'\t--verbose [0,1,2] Log level: no output, only timing, all messages');
 		return;
 	}
 	if( opts.verbose ){
@@ -27,8 +27,8 @@ var nopt = require('nopt'),
 	if( opts.verify ){
 		var applied = require('../lib/apply.js')(strA, patch, opts.verbose);
 		var verifyStartTime = new Date();
-		console.log('Патч ' + (applied === strB? 'хороший':'плохой'));
-		opts.verbose && console.log('Проверил за ' + (new Date() - verifyStartTime) + 'мс');
+		console.log('Patch is ' + (applied === strB? 'good':'bad'));
+		opts.verbose && console.log('Verified in ' + (new Date() - verifyStartTime) + 'ms');
 	}
 	if( opts.out ){
 		fs.writeFileSync(opts.out, JSON.stringify(patch), 'utf-8');
