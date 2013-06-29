@@ -2,12 +2,12 @@
 	"name":"shiny-nemesis",
 	"author":{
 		"name":"Andrey Mokrousov",
-		"url:"https://github.com/insane-developer"
+		"url":"https://github.com/insane-developer"
 	},
 	"homepage":"https://github.com/insane-developer/shiny-nemesis",
 	"repository":{
 		"type":"git",
-		"url":"https://github.com/insane-developer/shiny-nemesis",
+		"url":"https://github.com/insane-developer/shiny-nemesis"
 	},
 	"description":"Tools for creating and applying patches",
 	"version":"0.0.1",
