@@ -1,26 +1,36 @@
 {
-	"name":"shiny-nemesis",
-	"author":{
-		"name":"Andrey Mokrousov",
-		"url":"https://github.com/insane-developer"
+	"name": "@insane-develooper/splatch",
+	"author": {
+		"name": "Andrey Mokrousov",
+		"url": "https://github.com/insane-developer"
 	},
-	"homepage":"https://github.com/insane-developer/shiny-nemesis",
-	"repository":{
-		"type":"git",
-		"url":"https://github.com/insane-developer/shiny-nemesis"
+	"homepage": "https://github.com/insane-developer/splatch",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/insane-developer/splatch"
 	},
-	"description":"Tools for creating and applying patches",
-	"version":"0.0.2",
-	"main":"./main.js",
-	"bin":{
-		"create-shiny-patch":"./bin/create",
-		"apply-shiny-patch":"./bin/apply"
+	"description": "Tools for creating and applying patches",
+	"version": "0.0.2",
+	"main": "./main.js",
+	"scripts": {
+		"test": "mocha"
 	},
-	"dependencies":{
-		"nopt":"2.1.1"
+	"bin": {
+		"splatch-create": "./bin/create",
+		"splatch-apply": "./bin/apply"
 	},
-	"licenses": [{
-		"type": "MIT",
-		"url": "https://github.com/insane-developer/shiny-nemesis/master/LICENSE"
-	}]
+	"dependencies": {
+		"nopt": "2.1.1"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "https://github.com/insane-developer/splatch/master/LICENSE"
+		}
+	],
+	"devDependencies": {
+		"chai": "^4.2.0",
+		"eslint": "^5.13.0",
+		"mocha": "^5.2.0"
+	}
 }
