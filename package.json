@@ -13,7 +13,8 @@
 	"version": "0.0.2",
 	"main": "./main.js",
 	"scripts": {
-		"test": "mocha"
+		"test": "mocha tests",
+		"lint": "eslint lib"
 	},
 	"bin": {
 		"splatch-create": "./bin/create",
@@ -31,6 +32,7 @@
 	"devDependencies": {
 		"chai": "^4.2.0",
 		"eslint": "^5.13.0",
-		"mocha": "^5.2.0"
+		"mocha": "^5.2.0",
+		"seedrandom": "^3.0.1"
 	}
 }
